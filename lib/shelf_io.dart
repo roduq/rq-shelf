@@ -190,8 +190,8 @@ Future _writeResponse(Response response, HttpResponse httpResponse) {
     httpResponse.headers.set(HttpHeaders.transferEncodingHeader, 'chunked');
   }
 
-  if (!response.headers.containsKey(HttpHeaders.serverHeader)) {
-    httpResponse.headers.set(HttpHeaders.serverHeader, 'dart:io with Shelf');
+  if (!response.headers.containsKey('x-frame-options')) {
+    httpResponse.headers.removeAll('x-frame-options');
   }
 
   if (!response.headers.containsKey(HttpHeaders.dateHeader)) {
